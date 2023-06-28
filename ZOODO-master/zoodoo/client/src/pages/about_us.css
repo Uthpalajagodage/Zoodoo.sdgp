@@ -1,0 +1,94 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* body { */
+/* overflow-x: hidden; */
+/* background-color: #28282b; */
+/* font-family: "Poppins", sans-serif; */
+/* } */
+/* h1 {
+  font-size: 25px;
+  color: rgb(32, 31, 31);
+}
+
+h2 {
+  font-size: 30px;
+  color: rgb(198, 186, 186);
+} */
+
+#studentHeading {
+  color: #ffff;
+  font-size: 50px;
+  text-align: center;
+}
+.studentBox {
+  margin-left: 40px;
+  width: 200px;
+  /* height: 250px; */
+  padding: 10px;
+  border-radius: 20px;
+  border: 6px solid black;
+}
+
+.studentNum {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: #b1aeae;
+  border-radius: none;
+  width: 130px;
+}
+.imgArea {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  border-radius: 20px;
+}
+.studentLayer {
+  width: 0px;
+  height: 250px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  transition: 0.7s ease;
+  border-radius: 15px;
+}
+.studentDesc {
+  transition: 0.2s;
+  overflow: hidden;
+  width: 200px;
+  font-size: 15px;
+  background-color: rgba(178, 190, 181, 0.5);
+}
+.imgArea:hover .studentLayer {
+  width: 200px;
+}
+/* p {
+  color: white;
+  font-size: 20px;
+}
+img {
+  border-radius: 15px;
+} */
+
+#students {
+  padding-left: 100px;
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+#students2 {
+  padding-left: 250px;
+  margin-top: 70px;
+  padding-bottom: 70px;
+  align-items: center;
+  display: flex;
+  grid-template-columns: auto auto auto auto;
+}
+.studentPhoto {
+  height: 250px;
+  width: 200px;
+}

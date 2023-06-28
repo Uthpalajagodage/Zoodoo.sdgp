@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* rounded-lg border border-gray-400 h-11 outline-none w-full font-primary pl-3 mt-2 lg:mt-0  */
+.textBox {
+  border-radius: 8px;
+  border: rgb(156 163 175) 1px solid;
+  padding: 10px 12px;
+  outline: none;
+  width: 100%;
+  font-family: "Poppins";
+}

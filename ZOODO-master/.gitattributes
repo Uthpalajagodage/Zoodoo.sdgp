@@ -1,0 +1,2 @@
+zoodofoodclassification/zodoofoodclassification_model.h5 filter=lfs diff=lfs merge=lfs -text
+zoodofoodclassification/zodoofoodclassification_model.hdf5 filter=lfs diff=lfs merge=lfs -text
