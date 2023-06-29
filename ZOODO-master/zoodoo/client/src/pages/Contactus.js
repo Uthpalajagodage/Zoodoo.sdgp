@@ -1,9 +1,9 @@
 import React from 'react'
-import "./Form.css"
+import "./Contactus.css"
 import { useState } from 'react'
 
-const Form = () => {
-    const [data, setData]=useState({name:"",email:"",phone:"", message:""});
+const Contactus = () => {
+    const[data,setData]=useState({name:"",email:"",phone:"",message:""});
     const handleChange =(e) =>{
         const name = e.target.name;
         const value = e.target.value;
@@ -28,4 +28,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default Contactus
