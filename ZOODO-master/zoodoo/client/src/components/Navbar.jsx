@@ -58,9 +58,10 @@ const Navbar = () => {
             <Link to="/AboutUs">
               <li> About </li>
             </Link>
-            <Link to="/contact">
+            <Link to="/Contactus">
               <li> Contact </li>
             </Link>
+
 
             {/* {navLinks.map((nav, index) => (
               <li

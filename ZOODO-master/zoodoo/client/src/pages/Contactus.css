@@ -33,6 +33,7 @@ form input, textarea{
 
 form span{
   color: green;
+  font-size: larger;
 }
 
 form button{
