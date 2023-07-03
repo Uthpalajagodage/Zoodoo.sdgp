@@ -4,9 +4,8 @@ from tensorflow.keras.layers import GlobalAveragePooling2D, Dense
 from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-import h5py
 import matplotlib.pyplot as plt
+from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 # Data generators
 train_datagen = keras.preprocessing.image.ImageDataGenerator(
@@ -23,28 +22,11 @@ train_generator = train_datagen.flow_from_directory(
     batch_size=32,
     class_mode='categorical'
 )
-
-# Load test images from h5 file
-test_file = h5py.File('path/to/test/file.h5', 'r')
-test_images = test_file['images']
-test_labels = test_file['labels']
-
-# Convert test images to NumPy array and normalize
-test_images = test_images[:]
-test_images = test_images.astype('float32') / 255.0
-
-# Reshape test images if necessary
-# test_images = test_images.reshape(...)
-
-# Define the number of test samples
-num_test_samples = test_images.shape[0]
-
-# Create test generator from the loaded test images
-test_generator = test_datagen.flow(
-    test_images,
-    test_labels,
+test_generator = test_datagen.flow_from_directory(
+    'Food dataset/test/',
+    target_size=(224, 224),
     batch_size=32,
-    shuffle=False
+    class_mode='categorical'
 )
 
 # Load pre-trained model
@@ -79,10 +61,8 @@ model_checkpoint = ModelCheckpoint('best_model.h5', monitor='val_accuracy', save
 # Train model
 history = model.fit(
     train_generator,
-    epochs=2,
+    epochs=10,
     validation_data=test_generator,
-    steps_per_epoch=len(train_generator),
-    validation_steps=num_test_samples // 32,
     callbacks=[early_stopping, model_checkpoint]
 )
 
@@ -95,7 +75,7 @@ model.save('my_model2_two_inception3withbigaugmentation.h5')
 
 # Plot training and validation accuracy
 acc = history.history['accuracy']
-val_acc = history.history['val_accuracy']
+val_acc = history.history.get('val_accuracy', None)  # Get the value or return None if not available
 loss = history.history['loss']
 val_loss = history.history['val_loss']
 
