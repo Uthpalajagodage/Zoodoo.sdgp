@@ -7,7 +7,7 @@ const FoodRecipeSearch = () => {
   const [capturedImage, setCapturedImage] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [showWebcam, setShowWebcam] = useState(false);
-  const [showUpload, setShowUpload] = useState(false);
+  const [showUpload, setShowUpload] = useState(true);
   const [prediction, setPrediction] = useState(null);
   const [recipeData, setRecipeData] = useState(null);
   const webcamRef = React.useRef(null);
@@ -43,8 +43,7 @@ const FoodRecipeSearch = () => {
           // Send the predicted class value to the /food-recipes endpoint
           axios.get('http://localhost:3100/food-recipes', {
             params: {
-              // foodId: result.predicted_class,
-              foodId: 0,
+              foodId: response.predicted_class,
             },
           })
             .then((response) => {
@@ -120,6 +119,12 @@ const FoodRecipeSearch = () => {
 
   return (
     <div>
+      <div className="page-heading">
+        <h1>Delicious Recipes</h1>
+      </div>
+      <p className="recipe-description">
+        With Foodie Delights, finding delicious recipes is a breeze. Simply capture or upload an image, and our advanced technology will provide you with the best recipe match. Explore the recipe's name, ingredients, and step-by-step instructions in a visually appealing format. Enjoy a responsive design for a seamless experience on any device. Unleash your inner chef and create culinary masterpieces with Foodie Delights. Happy cooking!
+      </p>
       <form onSubmit={handleFormSubmit}>
         {showWebcam && (
           <div className="webcam-container">
@@ -172,27 +177,30 @@ const FoodRecipeSearch = () => {
           Upload Image
         </button>
       </div>
-      {prediction && (
-        <div>
-          <p>Predicted Class: {prediction.predicted_class}</p>
-          <p>Confidence Level: {prediction.confidence_level}</p>
-        </div>
-      )}
       {recipeData && (
         <div className="recipe-details">
-          <h2>{recipeData.Name}</h2>
-          <h3>Ingredients:</h3>
-          <ul>
+          <hr className="horizontal-line" />
+          <h2 className="recipe-name">{recipeData.Name}</h2>
+
+          <img src={recipeData.Image} alt={recipeData.Name} className="food-image" />
+
+          <h3 className="section-title">Ingredients:</h3>
+          <ul className="ingredient-list">
             {recipeData.Ingredients && recipeData.Ingredients.split('\n').map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
+              <li key={index} className="ingredient-item">{ingredient}</li>
             ))}
           </ul>
-          <h3>Steps:</h3>
-          <ol>
-            {recipeData.Steps && recipeData.Steps.split('\n').map((step, index) => (
-              <li key={index}>{step}</li>
-            ))}
-          </ol>
+          <h3 className="section-title">Steps:</h3>
+          <ul className="step-list">
+            {recipeData.Steps && recipeData.Steps.split('\n').map((step, index) => {
+              if (step.trim() === '') {
+                return null; // Skip rendering empty steps
+              }
+              return (
+                <li key={index} className="step-item">{step}</li>
+              );
+            })}
+          </ul>
         </div>
       )}
 

@@ -1,82 +1,163 @@
 .button-group {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  button {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  img {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .webcam-container {
-    width: 100%; 
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .webcam-container video,
-  .webcam-container img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 4%;
-  }
-  
-  /* Style the capture button */
-  .capture-button {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-    margin-top: 10px;
-  }
-  
-  /* Style the button group */
-  .button-group {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+button {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  }
-  
-  .button-group button {
-    background-color: "#00A954";
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
-    margin-left: 2%;
-  }
-  
-  /* Style the file input label */
-  .file-input-label {
-    background-color: #00A954;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
-  }
-  
-  /* Hide the file input */
-  input[type="file"] {
-    display: none;
-  }
-  
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.webcam-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.webcam-container video,
+.webcam-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 4%;
+}
+
+.option-button {
+  margin-bottom: 2%;
+}
+
+/* Style the capture button */
+.capture-button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* Style the button group */
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-group button {
+  background-color: "#00A954";
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-left: 2%;
+}
+
+/* Style the file input label */
+.file-input-label {
+  background-color: #00A954;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* Hide the file input */
+input[type="file"] {
+  display: none;
+}
+
+.recipe-details {
+  margin-top: 20px;
+}
+
+.recipe-name {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 35px;
+  margin-bottom: 80px;
+  color: rgb(17, 24, 39);
+  margin-top: 3%;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ingredient-list {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.ingredient-item {
+  margin-bottom: 5px;
+  text-align: justify;
+}
+
+.step-list {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 5%;
+  margin-top: 10px;
+}
+
+.step-item {
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.horizontal-line {
+  border: none;
+  border-top: 3px solid rgba(52, 183, 143, 0.75);
+  /* Adjust the color as needed */
+  width: 100%;
+  margin-top: 2%;
+}
+
+.food-image {
+  width: 330px;
+  height: 300px;
+  margin-left: 37%;
+  border-radius: 12px;
+  margin-bottom: 5%;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  /* Adjust the font size as needed */
+  color: green;
+  /* Adjust the color as needed */
+  margin-top: 10px;
+}
+
+.recipe-description {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
