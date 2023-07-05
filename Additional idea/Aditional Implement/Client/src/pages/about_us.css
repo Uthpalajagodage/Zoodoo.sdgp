@@ -1,0 +1,77 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+#studentHeading {
+  color: #ffff;
+  font-size: 50px;
+  text-align: center;
+}
+.studentBox {
+  margin-left: 30px;
+  width: 200px;
+  border-radius: 20px;
+  border: 6px solid black;
+  position: relative;
+  height: 275px;
+}
+
+.studentPhoto {
+  /* Add these rules */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  margin-top: 6px;
+}
+
+.studentNum {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: #b1aeae;
+  border-radius: none;
+  width: 130px;
+}
+.imgArea {
+  position: relative;
+}
+.studentLayer {
+  width: 0px;
+  height: 250px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  transition: 0.7s ease;
+  border-radius: 15px;
+}
+.studentDesc {
+  transition: 0.2s;
+  overflow: hidden;
+  width: 200px;
+  font-size: 15px;
+  background-color: rgba(178, 190, 181, 0.5);
+}
+.imgArea:hover .studentLayer {
+  width: 180px;
+}
+
+#students {
+  padding-left: 130px;
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+#students2 {
+  padding-left: 370px;
+  margin-top: 70px;
+  padding-bottom: 70px;
+  align-items: center;
+  display: flex;
+  grid-template-columns: auto auto auto auto;
+}
+.studentPhoto {
+  height: 250px;
+  width: 180px;
+}
