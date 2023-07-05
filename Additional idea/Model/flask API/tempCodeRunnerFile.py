@@ -2,15 +2,12 @@ from keras.models import load_model
 from PIL import Image
 from flask import Flask, request, jsonify
 import numpy as np
-from flask_cors import CORS
-
 
 # Load saved model
 model = load_model('Model\\pythonProject\\best_model.h5')
 
 
 app = Flask(__name__)
-CORS(app)
 
 # Define endpoint for receiving image
 @app.route('/predict', methods=['POST'])
