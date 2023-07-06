@@ -8,7 +8,6 @@ const FoodRecipeSearch = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [showWebcam, setShowWebcam] = useState(false);
   const [showUpload, setShowUpload] = useState(true);
-  const [prediction, setPrediction] = useState(null);
   const [recipeData, setRecipeData] = useState(null);
   const webcamRef = React.useRef(null);
 
@@ -26,27 +25,30 @@ const FoodRecipeSearch = () => {
       const formData = new FormData();
 
       if (capturedImage) {
-        const capturedFile = dataURLtoFile(capturedImage, 'captured.jpg');
-        formData.append('image', capturedFile);
+        const capturedFile = await fetch(capturedImage)
+          .then((response) => response.blob())
+          .then((blob) => new File([blob], 'captured.jpg', { type: 'image/jpeg' }));
+        formData.append('image', capturedFile, 'captured.jpg');
       } else if (uploadedImage) {
-        formData.append('image', uploadedImage);
+        formData.append('image', uploadedImage, uploadedImage.name);
       }
 
       try {
-        const response = await fetch('http://localhost:8501/predict', {
-          method: 'POST',
-          body: formData,
-        });
+        const response = await axios.post('http://localhost:8501/predict', formData);
 
         // Handle the response from the server
-        if (response.ok) {
+        if (response.status === 200) {
+          const result = response.data;
+          // Process the result
+          console.log(result);
           // Send the predicted class value to the /food-recipes endpoint
           axios.get('http://localhost:3100/food-recipes', {
             params: {
-              foodId: response.predicted_class,
+              foodId: result.predicted_class,
             },
           })
             .then((response) => {
+              console.log(response.data);
               // Handle the response from the /food-recipes endpoint
               setRecipeData(response.data); // Store the recipe data in state
             })
@@ -67,16 +69,11 @@ const FoodRecipeSearch = () => {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setUploadedImage(reader.result);
-      setShowWebcam(false);
-      setShowUpload(false);
-    };
 
     if (file) {
-      reader.readAsDataURL(file);
+      setUploadedImage(file);
+      setShowWebcam(false);
+      setShowUpload(false);
     }
   };
 
@@ -85,14 +82,12 @@ const FoodRecipeSearch = () => {
     setUploadedImage(null);
     setShowWebcam(true);
     setShowUpload(false);
-    setPrediction(null);
   };
 
   const handleWebcamClick = () => {
     if (!showWebcam) {
       setShowWebcam(true);
       setShowUpload(false);
-      setPrediction(null);
     }
   };
 
@@ -100,36 +95,22 @@ const FoodRecipeSearch = () => {
     if (!showUpload) {
       setShowWebcam(false);
       setShowUpload(true);
-      setPrediction(null);
     }
   };
-
-  // Helper function to convert data URL to a File object
-  function dataURLtoFile(dataURL, filename) {
-    const arr = dataURL.split(',');
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-  }
 
   return (
     <div>
       <div className="page-heading">
-        <h1>Delicious Recipes</h1>
+        <h1 className='heading'>Delicious Recipes</h1>
       </div>
       <p className="recipe-description">
-        With Foodie Delights, finding delicious recipes is a breeze. Simply capture or upload an image, and our advanced technology will provide you with the best recipe match. Explore the recipe's name, ingredients, and step-by-step instructions in a visually appealing format. Enjoy a responsive design for a seamless experience on any device. Unleash your inner chef and create culinary masterpieces with Foodie Delights. Happy cooking!
+        With Foodie Delights, finding delicious recipes is a breeze. Simply capture or upload an image, and our advanced technology will provide you with the best recipe match. Explore the recipe's name, ingredients, and step-by-step instructions in a visually appealing format. Enjoy aresponsive design for a seamless experience on any device. Unleash your inner chef and create culinary masterpieces with Foodie Delights. Happy cooking!
       </p>
       <form onSubmit={handleFormSubmit}>
         {showWebcam && (
           <div className="webcam-container">
             <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-            <button type="button" className='bg-primaryGreen text-white' onClick={captureImage} disabled={!!capturedImage || !!uploadedImage}>
+            <button type="button" className="bg-primaryGreen text-white" onClick={captureImage} disabled={!!capturedImage || !!uploadedImage}>
               Capture
             </button>
           </div>
@@ -151,12 +132,12 @@ const FoodRecipeSearch = () => {
             )}
             {uploadedImage && (
               <div>
-                <img src={uploadedImage} alt="Uploaded" />
+                <img src={URL.createObjectURL(uploadedImage)} alt="Uploaded" />
               </div>
             )}
             <div>
-              <button type="submit" className='bg-primaryGreen text-white'>Search</button>
-              <button type="button" onClick={retakeImage} className='bg-primaryGreen text-white'>Retake</button>
+              <button type="submit" className="bg-primaryGreen text-white">Search</button>
+              <button type="button" onClick={retakeImage} className="bg-primaryGreen text-white">Retake</button>
             </div>
           </div>
         )}
@@ -203,10 +184,8 @@ const FoodRecipeSearch = () => {
           </ul>
         </div>
       )}
-
     </div>
   );
-
 };
 
 export default FoodRecipeSearch;

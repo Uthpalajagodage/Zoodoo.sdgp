@@ -147,7 +147,7 @@ input[type="file"] {
   align-items: center;
 }
 
-h1 {
+.heading {
   text-align: center;
   font-size: 40px;
   /* Adjust the font size as needed */
