@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import SignUp from "./pages/SignUp";
@@ -10,14 +10,13 @@ import Admin from "./pages/Admin";
 import Shop from "./pages/Shop";
 import BuyFood from "./pages/BuyFood";
 import AboutUs from "./pages/AboutUs"
-import Contactus from "./pages/Contactus"
 
 function App() {
   return (
     <Router>
       <div>
         <div className="px-4 md:px-12 lg:px-36 max-w-screen-xl 2xl:px-0 mx-auto min-h-screen">
-          {/* <Navbar /> */}
+          <Navbar />
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -28,9 +27,6 @@ function App() {
             <Route path="/Shop" element={<Shop />} />
             <Route path="/buyFood/:id" element={<BuyFood />} />
             <Route path="/AboutUs" element={<AboutUs />} />
-            <Route path="/Contactus" element={<Contactus />} />
-
-
           </Routes>
           {/* footer */}
         </div>
