@@ -96,7 +96,7 @@ const Contactus = () => {
       <div className="contact-image-container">
         <img className="contact-image" src={ContactImage} alt="Contact" />
         <p className="contact-text">
-          A Contact Us page is essential to building a brand's website as it allows visitors to contact you easily without leaving their browser. They also give you the opportunity to capture leads and improve customer service. Generally, visitors can also leave feedback or ask questions through these channels.
+          Filling out our contact form is the simplest and quickest way to reach ZOODO. Your message will be sent to the right team, and we'll get in touch with you right away.
         </p>
       </div>
     </div>
